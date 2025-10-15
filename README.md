@@ -9,11 +9,8 @@ It is designed for **HPC**, **media asset indexing**, and **large-scale filesyst
 
 ## 🚀 Features
 
-- **Multithreaded traversal** using `scandir()` and a cooperative work queue.
-  Threads work without holding the Python GIL.
-- **No deadlocks or hangs** — fully cooperative termination logic.
-- **Optional CRC32 checksums** via zlib.
-- **Optional username resolution** (cached `uid → username` lookups).
+- **Multithreaded traversal** Threads work without holding the Python GIL.
+- **Optional CRC32 checksums** 
 - **Optional timing measurements** (`ElapsedSeconds`).
 - **Optional streaming JSON output to disk** — for very large scans (no RAM growth).
 - **Thread-safe error tracking** (`fsdir.errors()`).
