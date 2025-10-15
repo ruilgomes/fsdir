@@ -273,17 +273,7 @@ res = fsdir.go(
 print(json.dumps(res, indent=2))
 ```
 
----
 
-## 🧠 Internals
-
-- **Work Queue:** Thread-safe cooperative queue with `queued`, `active`, and `stop` counters ensures no worker deadlocks.
-- **Threads:** Spawned with `pthread_create`; now unlimited count based on user setting.
-- **No GIL contention:** Worker threads never interact with Python APIs.
-- **Username cache:** Thread-safe hash table (128 buckets) for UID lookups.
-- **Streaming JSON:** Thread-safe file writes using minimal locking.
-
----
 
 ## 🧩 Version
 `fsdir 1.0.0`
