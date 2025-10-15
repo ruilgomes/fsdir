@@ -736,6 +736,9 @@ PyMODINIT_FUNC PyInit_fsdir(void)
     fsdirError = PyErr_NewException("fsdir.error", NULL, NULL);
     Py_INCREF(fsdirError);
     PyModule_AddObject(m, "error", fsdirError);
-    PyModule_AddStringConstant(m, "__version__", "1.0.0");
+    if (PyModule_AddStringConstant(m, "__version__", "1.0.0") < 0) {
+        Py_DECREF(m);
+        return NULL;
+    }
     return m;
 }
