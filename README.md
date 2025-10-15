@@ -260,7 +260,7 @@ print(json.dumps(res, indent=2))
 ---
 
 ## 🧩 Version
-`fsdir 4.1.0`
+`fsdir 1.0.0`
 
 ---
 
