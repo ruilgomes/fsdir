@@ -123,11 +123,40 @@ The file will contain:
 This mode avoids memory growth when scanning millions of files.
 
 ---
+### 4. Benchmarks:
+Benchmark using du as baseline on a data set with 64465 directories, 496167 Files, and a total size of 261GB.
+ 
+```bash
+$ /usr/bin/time -f %e du -smc /dataset/ > /dev/null
+326.12
+
+#Benchmark code: fsdir.go("/dataset/", summary=True, crc32=False, max_threads=i, resolve_users=False, measure_time=True, output_file=None)
+
+Running with 2 threads:
+{'Dirs': 64465, 'Files': 496157, 'Size': 261555184, 'ElapsedSeconds': 171.327735196}
+
+Running with 4 threads:
+{'Dirs': 64465, 'Files': 496157, 'Size': 261555184, 'ElapsedSeconds': 97.029060462}
+
+Running with 6 threads:
+{'Dirs': 64465, 'Files': 496157, 'Size': 261555184, 'ElapsedSeconds': 83.050697647}
+
+Running with 8 threads:
+{'Dirs': 64465, 'Files': 496157, 'Size': 261555184, 'ElapsedSeconds': 79.379940187}
+
+Running with 10 threads:
+{'Dirs': 64465, 'Files': 496157, 'Size': 261555184, 'ElapsedSeconds': 78.613208631}
+
+Running with 12 threads:
+{'Dirs': 64465, 'Files': 496157, 'Size': 261555184, 'ElapsedSeconds': 78.635999863}
+
+```
+
+---
 
 ## ⚠️ Notes & Limits
 
 - Default thread cap: up to 8 (based on available CPUs) when `max_threads=0`.
-- No hard limit on `max_threads`; the user controls how many threads to spawn.
 - Memory usage in non-streaming mode scales linearly with file count.
 - CRC32 computation and username lookups add overhead.
 - Works with both **absolute and relative** paths.
